@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.byondxtremes.ecom.common'
+version = '1.0.0'
+sourceCompatibility = '11'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.byondxtremes.ecom.common'
+            artifactId = 'common-lib'
+            version = '1.0.0'
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
+dependencies {
+
+    //spring-framework
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.2.25.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-core', version: '5.2.25.RELEASE'
+
+    // kafka
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.9.13'
+
+    // Jackson
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.5'
+
+    //logging
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.36'
+
+    //lombok
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}

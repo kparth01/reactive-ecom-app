@@ -1,0 +1,30 @@
+server:
+  port: 8011
+
+amazon:
+  dynamodb:
+    endpoint: http://localhost:8000
+    region: ap-southeast-1
+    tableName: shipping
+    accessKey: ub3cbf
+    secretKey: 46zv4n
+
+validations:
+  header-list: Content-Disposition
+  header-regex: "[a-zA-Z0-9.-_ ]*"
+
+
+spring:
+  application:
+    name: reactive-sample
+  profiles:
+    active: local
+  kafka:
+    consumer:
+      shippingTopic: shipping-topic
+      groupId: test-consumer-group
+      bootstrapServers: localhost:9092
+    producer:
+      ordersTopic: orders-topic
+      bootstrapServers: localhost:9092
+

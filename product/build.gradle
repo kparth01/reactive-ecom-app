@@ -1,0 +1,59 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.11'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.byondxtremes.ecom.product'
+version = '1.0.0'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation("org.springframework.boot:spring-boot-starter-web") {
+//		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+//	}
+//	implementation 'org.springframework.boot:spring-boot-starter-validation'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+
+	//implementation files('/Users/parth.kansara/Projects/OneNS/sourceCode/reactive/product/libs/onens-common-lib-1.0.14-plain.jar')
+	implementation 'com.byondxtremes.ecom.common:common-lib:1.0.0'
+	implementation 'org.owasp.encoder:encoder:1.2.3'
+
+	//mapstruct
+	implementation "org.mapstruct:mapstruct:1.4.2.Final"
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+
+	//logger
+	implementation 'net.logstash.logback:logstash-logback-encoder:6.6'
+
+	//apache-commons blessings
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+
+	//dynamo
+	implementation(platform("software.amazon.awssdk:bom:2.20.65"))
+	implementation("software.amazon.awssdk:dynamodb-enhanced")
+
+	// kafka
+	implementation "org.springframework.kafka:spring-kafka"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
